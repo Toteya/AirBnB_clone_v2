@@ -113,15 +113,62 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
+    def parse_args(self, args):
+        """ Splits the arguments into a list of arguments
+        """
+        
+        dict_args = {}
+        argv = args.split()
+        if argv:
+            dict_args['class'] = argv[0]
+
+        for arg in argv[1:]:
+            if '=' in arg:
+                key = arg.split('=')[0]
+                value = arg.split('=')[1]
+                value = self.validate_value(value)
+                if value:
+                    dict_args[key] = value
+                # take care of underscores, quotation marks, datatypes, spaces"
+
+        return dict_args
+
+    def validate_value(self, value):
+        """ Validates the format of the value entered
+        i.e. Integer, Float, String
+        """
+        if not value:
+            return None
+        if value[0] == '\"' and value[-1] == '\"':
+            value = value.strip('\"')
+            value = value.replace('_', ' ')
+            return value
+        if value.isnumeric():
+            return int(value)
+        if '.' in value:
+            flt_figures = value.split('.')
+            if len(flt_figures) != 2:
+                return None
+            if all(str.isnumeric() for str in flt_figures):
+                return float(value)
+        return None
+
     def do_create(self, args):
         """ Create an object of any class"""
-        if not args:
+        dict_args = self.parse_args(args)
+        # for key, value in dict_args.items():
+        #    print(f'{key}: {value}')
+        if not dict_args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif dict_args['class'] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[dict_args['class']]()
+        for key, value in dict_args.items():
+            if key == 'class':
+                continue
+            setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
         storage.save()
