@@ -7,6 +7,9 @@ from sqlalchemy.orm import relationship
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     __tablename__ = 'cities'
+
     state_id = ""
     name = Column('name', String(128), nullable=False)
-    state_id = Column('state_id', String(60), nullable=False, ForeignKey)
+    state_id = Column('state_id', String(60), nullable=False,
+                      ForeignKey('states.id'))
+    state = relationship("State", back_populates="cities", uselist=False)

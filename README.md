@@ -4,6 +4,9 @@ This repository contains the initial stage of a student project to build a clone
 
 ---
 
+## Resources:
+* [SqlAlchemy Basics]https://michael-f-bryan.github.io/cheat-sheets/Python/sqlalchemy.html#SqlAlchemy%20Basics
+
 <center><h3>Repository Contents by Project Task</h3> </center>
 
 | Tasks | Files | Description |
