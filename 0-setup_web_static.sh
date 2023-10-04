@@ -18,7 +18,7 @@ echo '<h2>Welcome to Web_static<h2>' > /data/web_static/releases/test/index.html
 # Delete and recreate if it already exists
 LINK='/data/web_static/current'
 TARGET='/data/web_static/releases/test/'
-if test -f "$LINK"; then
+if test "$LINK"; then
 	rm "$LINK"
 fi
 ln -s "$TARGET" "$LINK"
@@ -56,14 +56,13 @@ http {
 	# server_tokens off;
 	
 	server {
-	}
-
-	location /hbnb_static {
-		alias /data/web_static/current/hbnb_static
+		location /hbnb_static {
+			alias /data/web_static/current/hbnb_static;
+		}
 	}
 
 	# server_names_hash_bucket_size 64;
-    # server_name_in_redirect off;
+	# server_name_in_redirect off;
 
 	include /etc/nginx/mime.types;
 	default_type application/octet-stream;
