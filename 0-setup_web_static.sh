@@ -12,7 +12,7 @@ mkdir -p /data/web_static/releases/test/
 mkdir -p /data/web_static/shared/
 
 # Create test/fake HTML file
-echo '<h2>Welcome to Web_static<h2>' > /data/web_static/releases/test/index.html
+echo 'Welcome to Web_static' > /data/web_static/releases/test/index.html
 
 # Create a symbolic link to the '/data/web_static/releases/test/' folder
 # Delete and recreate if it already exists
@@ -56,8 +56,8 @@ http {
 	# server_tokens off;
 	
 	server {
-		location /hbnb_static {
-			alias /data/web_static/current/hbnb_static;
+		location /hbnb_static/ {
+			alias /data/web_static/current/hbnb_static/;
 		}
 	}
 
