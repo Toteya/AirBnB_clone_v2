@@ -2,7 +2,7 @@
 """
 module 1-pack_web_static
 """
-from fabric.api import local
+from fabric.api import local, settings
 from datetime import datetime
 
 
@@ -18,6 +18,7 @@ def do_pack():
                          str(time.hour),
                          str(time.minute),
                          str(time.second)])
-    # print(timestamp)
-    filename = "web_static_{}.tgz".format(timestamp)
-    local('tar -cvzf {} ./web_static'.format(filename))
+
+    filepath = "versions/web_static_{}.tgz".format(timestamp)
+    local('tar -cvzf {} ./web_static'.format(filepath))
+    return filepath
