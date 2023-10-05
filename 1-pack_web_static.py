@@ -20,8 +20,12 @@ def do_pack():
                          str(time.minute),
                          str(time.second)])
 
+    dir_path = "versions/"
     file_path = "versions/web_static_{}.tgz".format(timestamp)
     source_path = "web_static"
+
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
 
     if not os.path.exists(source_path):
         return None
