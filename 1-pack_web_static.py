@@ -23,8 +23,12 @@ def do_pack():
     file_path = "versions/web_static_{}.tgz".format(timestamp)
     source_path = "web_static"
 
+    if not os.path.exists(source_path):
+        return None
+
     dir_size = get_dir_size(source_path)
 
+    print("Packing {} to {}".format(source_path, file_path))
     local('tar -cvzf {} ./web_static'.format(file_path))
     print("{} packed: {} -> {}Bytes".format(source_path, file_path, dir_size))
     return file_path
