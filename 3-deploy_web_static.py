@@ -4,7 +4,7 @@ module 3-deploy_web_static
 """
 
 from __future__ import with_statement
-from fabric.api import task, runs_once
+from fabric.api import env, task, runs_once
 import os
 
 do_pack = __import__('1-pack_web_static').do_pack
