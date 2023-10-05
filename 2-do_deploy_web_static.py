@@ -3,10 +3,8 @@
 module 1-pack_web_static
 """
 from __future__ import with_statement
-from fabric.api import env, put, run, sudo
-from datetime import datetime
+from fabric.api import env, put, sudo
 import os
-
 
 env.user = 'ubuntu'
 env.hosts = ['ubuntu@156061-web-01', 'ubuntu@156061-web-02']
@@ -28,7 +26,10 @@ def do_deploy(archive_path=None):
     put(archive_path, '/tmp/')
     sudo('mkdir -p {}'.format(dest_dir))
     sudo('tar -xzf /tmp/{}.tgz -C {}'.format(filename, dest_dir))
+    sudo('mv {}/web_static/* {}'.format(dest_dir, dest_dir))
+    sudo('rm -rf {}/web_static/')
     sudo('rm -rf /tmp/{}'.format(filename))
+    sudo('rm -rf /data/web_static/current')
     sudo('ln -s {} /data/web_static/current'.format(dest_dir))
     print('New version deployed!')
     return True
