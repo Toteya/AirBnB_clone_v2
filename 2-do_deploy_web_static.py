@@ -29,8 +29,8 @@ def do_deploy(archive_path=None):
         results.append(sudo('mkdir -p {}'.format(dest_dir)))
         results.append(sudo('tar -xzf /tmp/{}.tgz -C {}'.format(filename,
                                                                 dest_dir)))
-        results.append(sudo('mv {}/web_static/* {}'.format(dest_dir,
-                                                           dest_dir)))
+        results.append(sudo('cp -r {}/web_static/* {}'.format(dest_dir,
+                                                              dest_dir)))
         results.append(sudo('rm -rf {}/web_static/'))
         results.append(sudo('rm -rf /tmp/{}'.format(filename)))
         results.append(sudo('rm -rf /data/web_static/current'))
