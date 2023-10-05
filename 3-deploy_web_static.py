@@ -18,6 +18,9 @@ env.key_filename = '~/.ssh/school'
 @task
 @runs_once
 def pack():
+    """
+    Executes the do_pack task that archive the web_static content
+    """
     return do_pack()
 
 
