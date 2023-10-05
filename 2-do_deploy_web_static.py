@@ -16,8 +16,8 @@ def do_deploy(archive_path=None):
     Deploys an archive to a web server
     """
 
-    # if not os.path.exists(archive_path):
-    #     return False
+    if not os.path.exists(archive_path):
+        return False
 
     filename = archive_path.split('/')[-1]
     filename = filename.split('.')[0]
