@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """
-module 1-pack_web_static
+module 2-do_deploy_web_static
 """
 from __future__ import with_statement
 from fabric.api import env, put, settings, sudo
 import os
 
-env.user = 'ubuntu'
-env.hosts = ['ubuntu@156061-web-01', 'ubuntu@156061-web-02']
-env.key_filename = '~/.ssh/school'
+# env.user = 'ubuntu'
+# env.hosts = ['ubuntu@156061-web-01', 'ubuntu@156061-web-02']
+# env.key_filename = '~/.ssh/school'
 
 
 def do_deploy(archive_path=None):
