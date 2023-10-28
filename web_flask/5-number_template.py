@@ -36,16 +36,16 @@ def python_is_cool(text="is cool"):
     return f"Python {escape(text)}"
 
 
-@app.route("/number/<int:n>")
+@app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
     """ Checks if n is a number """
     return f"{escape(n)} is a number"
 
 
-@app.route("/number_template/<int:n>")
+@app.route("/number_template/<int:n>", strict_slashes=False)
 def number_template(n):
     """Displays an HTML page only if n is a number"""
-    return render_template('5-number.html', number=n)
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
