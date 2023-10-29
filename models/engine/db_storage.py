@@ -26,7 +26,7 @@ class DBStorage:
                                                   host,
                                                   database)
         self.__engine = create_engine(db_url, pool_pre_ping=True)
-        # Base.metadata.create_all(self.__engine)
+        Base.metadata.create_all(self.__engine)
         if os.environ.get('HBNB_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
 

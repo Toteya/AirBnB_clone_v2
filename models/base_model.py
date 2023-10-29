@@ -69,6 +69,7 @@ class BaseModel:
             del dictionary['_sa_instance_state']
         except KeyError:
             pass
+        print("HERE DICTIONARY!!!!")
         return dictionary
 
     def delete(self):
