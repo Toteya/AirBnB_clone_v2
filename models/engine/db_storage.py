@@ -3,6 +3,7 @@
 module db_storage
 Database storage engine
 """
+import models
 from models.base_model import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -34,25 +35,14 @@ class DBStorage:
         """Return an dictionary of object from the database of the given
         class. If class is None, returns all a dictionary of all objects
         """
-        from models.amenity import Amenity
-        from models.city import City
-        from models.place import Place
-        from models.state import State
-        from models.user import User
-        from models.review import Review
-        """
+        import models
         classes = {
-                'User': User,
-                'State': State,
-                'City': City,
-                'Amenity': Amenity,
-                'Place': Place,
-                'Review': Review
-            }
-        """
-        classes = {
-                'State': State,
-                'City': City,
+                'User': models.user.User,
+                'State': models.state.State,
+                'City': models.city.City,
+                # 'Amenity': Amenity,
+                # 'Place': Place,
+                # 'Review': Review
             }
         obj_list = []
         if cls:
