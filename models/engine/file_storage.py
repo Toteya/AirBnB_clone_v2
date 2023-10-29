@@ -65,3 +65,8 @@ class FileStorage:
             del self.all()[obj.to_dict()['__class__'] + '.' + obj.id]
         except KeyError:
             pass
+
+    def close():
+        """ Deserializes the JSON file to objects
+        """
+        self.reload()

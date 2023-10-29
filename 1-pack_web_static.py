@@ -2,23 +2,25 @@
 """
 module 1-pack_web_static
 """
-from fabric.api import local, settings
-from datetime import datetime
+from fabric.api import local, settings, task, runs_once
+from datetime import datetime, date
 import os
-
 
 def do_pack():
     """
     Generates a .tgz archive from the contents of the web_static
     folder
     """
-    time = datetime.now()
-    timestamp = "".join([str(time.year),
-                         str(time.month),
-                         str(time.day),
-                         str(time.hour),
-                         str(time.minute),
-                         str(time.second)])
+    dt = datetime.now()
+    # dt = datetime(2017, 3, 14, 23, 33, 57)
+    
+    to_str = lambda x: str(x) if x >= 10 else f'0{x}'
+    timestamp = "".join([str(dt.year),
+                         to_str(dt.month),
+                         to_str(dt.day),
+                         to_str(dt.hour),
+                         to_str(dt.minute),
+                         to_str(dt.second)])
 
     dir_path = "versions/"
     file_path = "versions/web_static_{}.tgz".format(timestamp)
