@@ -16,6 +16,7 @@ class DBStorage:
 
     __engine = None
     __session = None
+    Session = None
 
     def __init__(self):
         user = os.environ.get('HBNB_MYSQL_USER')
@@ -46,8 +47,7 @@ class DBStorage:
             }
         obj_list = []
         if cls:
-            clss = self.classes.get(cls)
-            result = self.__session.query(clss).all()
+            result = self.__session.query(cls).all()
             obj_list.extend(result)
         else:
             for clss in classes:
@@ -87,4 +87,8 @@ class DBStorage:
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
-        self.__session = Session()
+        self.__session = Session
+
+    def close(self):
+        """Closes the current session"""
+        self.__session.remove()

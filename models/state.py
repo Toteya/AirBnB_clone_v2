@@ -20,9 +20,8 @@ class State(BaseModel, Base):
         """ Returns list of cities whose state_id matches the
         current State instance's id
         """
-        from models import storage
         city_list = []
-        for obj in storage.all().values():
-            if isinstance(obj, City) and obj.state_id == self.id:
+        for obj in models.storage.all().values():
+            if isinstance(obj, models.city.City) and obj.state_id == self.id:
                 city_list.append(obj)
         return city_list
