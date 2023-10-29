@@ -41,7 +41,7 @@ class DBStorage:
                 'State': models.state.State,
                 'City': models.city.City,
                 # 'Amenity': Amenity,
-                # 'Place': Place,
+                'Place': models.place.Place,
                 # 'Review': Review
             }
         obj_list = []
