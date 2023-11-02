@@ -42,12 +42,11 @@ class DBStorage:
         """Return an dictionary of object from the database of the given
         class. If class is None, returns all a dictionary of all objects
         """
-        import models
         classes = {
                 'User': models.user.User,
                 'State': models.state.State,
                 'City': models.city.City,
-                # 'Amenity': Amenity,
+                'Amenity': Amenity,
                 'Place': models.place.Place,
                 'Review': models.review.Review
             }
