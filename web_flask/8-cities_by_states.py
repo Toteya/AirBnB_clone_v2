@@ -16,12 +16,13 @@ def close_session(exception=None):
     storage.close()
 
 
-@app.route("/states_list", strict_slashes=False)
+@app.route("/cities_by_states", strict_slashes=False)
 def states_list():
     """Display States HTML page"""
     states = storage.all(State).values()
     close_session()
-    return render_template('7-states_list.html', states=states)
+
+    return render_template('8-cities_by_states.html', states=states)
 
 
 if __name__ == '__main__':
